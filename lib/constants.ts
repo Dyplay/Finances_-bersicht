@@ -1,12 +1,12 @@
 // Database and Collection IDs
 export const DATABASES = {
-  FINANCE: 'finance',
+  FINANCE: '682b27fa001114d6f6a4',
 };
 
 export const COLLECTIONS = {
-  TRANSACTIONS: 'transactions',
-  SUBSCRIPTIONS: 'subscriptions',
-  CATEGORIES: 'categories',
+  TRANSACTIONS: '682b282800119161d0ad',
+  SUBSCRIPTIONS: '682b281500291d3decef',
+  CATEGORIES: '682b281e000887f475c4',
   BUDGETS: 'budgets',
 };
 

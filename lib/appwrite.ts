@@ -2,7 +2,7 @@ import { Account, Avatars, Client, Databases, Storage } from 'appwrite';
 
 // Initialize the Appwrite client
 const client = new Client()
-  .setEndpoint('https://cloud.appwrite.io/v1')
+  .setEndpoint('https://fra.cloud.appwrite.io/v1')
   .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID || '');
 
 // Initialize Appwrite services

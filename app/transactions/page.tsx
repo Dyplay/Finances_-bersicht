@@ -37,7 +37,7 @@ export default function TransactionsPage() {
   const [isNewTransactionOpen, setIsNewTransactionOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedType, setSelectedType] = useState<'all' | 'income' | 'expense'>('all');
-  const [selectedCategory, setSelectedCategory] = useState<string>('');
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedTimePeriod, setSelectedTimePeriod] = useState('month');
   const [isLoading, setIsLoading] = useState(false);
   
@@ -90,7 +90,7 @@ export default function TransactionsPage() {
         endDate,
         search: searchQuery || undefined,
         type: selectedType !== 'all' ? selectedType : undefined,
-        categories: selectedCategory ? [selectedCategory] : undefined,
+        categories: selectedCategory !== 'all' ? [selectedCategory] : undefined,
         sortBy: 'date',
         sortDirection: 'desc',
       };
@@ -104,8 +104,7 @@ export default function TransactionsPage() {
     selectedTimePeriod, 
     searchQuery, 
     selectedType, 
-    selectedCategory, 
-    fetchTransactions
+    selectedCategory
   ]);
   
   if (authLoading || !user) {
@@ -233,7 +232,7 @@ export default function TransactionsPage() {
                       <SelectValue placeholder="All categories" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">All categories</SelectItem>
+                      <SelectItem value="all">All categories</SelectItem>
                       {TRANSACTION_CATEGORIES.map((category) => (
                         <SelectItem key={category.id} value={category.id}>
                           <div className="flex items-center">

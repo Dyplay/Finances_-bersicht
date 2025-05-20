@@ -10,12 +10,16 @@ import { DATABASES, COLLECTIONS } from '@/lib/constants';
 export function useTransactions() {
   const { user } = useAuth();
   const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   
   // Fetch all transactions for the current user
   const fetchTransactions = async (filters?: TransactionFilters) => {
-    if (!user) return;
+    if (!user) {
+      setTransactions([]);
+      setIsLoading(false);
+      return;
+    }
     
     setIsLoading(true);
     setError(null);
@@ -102,6 +106,7 @@ export function useTransactions() {
     } catch (error: any) {
       console.error('Error fetching transactions:', error);
       setError(error.message || 'Failed to fetch transactions');
+      setTransactions([]);
     } finally {
       setIsLoading(false);
     }
